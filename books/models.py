@@ -1,4 +1,5 @@
 from django.db import models
+from stdimage.models import StdImageField
 
 
 class Base(models.Model):
@@ -14,7 +15,7 @@ class Book(Base):
     author = models.CharField('Author', max_length=100, blank=False, null=False)
     resume = models.TextField()
     status = models.BooleanField(default=True, verbose_name='Status')
-    image = models.ImageField(upload_to='static/img')
+    image = StdImageField(upload_to='static/img', variations={'thumb': {'width': 200, 'height': 200, 'crop': True}})
 
     class Meta:
         verbose_name = 'Book'
